@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dr. Fit</title>
+  <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="/static/css/font.css">
+	<link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/plugin.css">
+  <style>
+
+  .module {
+    margin: 10px;
+    width: 300px;
+    height: 100px;
+    float: left;
+
+    background-size: cover;
+    position: relative;
+  }
+
+  h2 {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 4px 8px;
+    color: white;
+    margin: 0;
+    font: 11px Sans-Serif;
+  }
+
+  h3 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 4px 8px;
+    color: white;
+    margin: 0;
+    font: 11px Sans-Serif;
+
+  }
+
+  .opp h2 {
+    background: rgba(255, 255, 255, 0.75);
+    color: black;
+  }
+
+  </style>
+
+  <link rel="stylesheet" href="/static/js/messenger/css/messenger.css">
+  <link rel="stylesheet" href="/static/js/messenger/css/messenger-theme-future.css">
+  <link rel="stylesheet" href="/static/js/slim/slim.min.css">
+
+
+  <!--[if lt IE 9]>
+    <script src="/static/js/ie/respond.min.js"></script>
+    <script src="/static/js/ie/html5.js"></script>
+    <script src="/static/js/ie/excanvas.js"></script>
+  <![endif]-->
+
+
+
+
+
+</head>
+
+<script>
+var cafeid = "{{cafe.id}}"
+</script>
+<body>
+  {% include "header.html" %}
+
+  {% include "navbar.html" %}
+
+  <section id="content">
+    <section class="main padder">
+      <div class="clearfix">
+        <h4><i class="fa fa-edit"></i>Kategori Ekle</h4>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-7 col-md-offset-2" >
+          <section class="panel">
+          <div class="panel-body">
+          <div class="form-horizontal">
+
+
+            <form action="/addnewbimg" id="kateform" method="post" enctype="multipart/form-data" >
+
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">Haftanın kaçıncı günü için ?:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="kacincigunicin" id="kacincigunicin" placeholder="Gün sayısı." class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">Resmi belirleyin:</label>
+                   <div class="col-lg-7">
+                     <div class="slim" data-did-upload="imageUpload" style="width:220px;height:120px;"
+                          data-size="220,120"
+                          data-push="false"
+                          data-label="Resmi sürükleyin yada tıklayın"
+                          data-ratio="11:6">
+
+                         <input name="file" id="file"  type="file"  required />
+                 </div>
+                   </div>
+
+
+                   <div class="form-group">
+                     <label class="col-lg-4 control-label">Kategori ismi belirleyin:</label>
+                     <div class="col-lg-7">
+                       <div id="kategoriekle" class="btn btn-success" style="margin-top:10px;" >İşlemi tamamla</div>
+                     </div>
+                   </div>
+
+
+
+                 </div>
+
+          </form>
+
+          <div class="col-lg-7 col-md-offset-2">
+
+            <section class="panel">
+              <div class="panel-body">
+
+
+
+
+
+                    <div class="col-lg-7 col-md-offset-2">
+                      <img src="/media/{{getbimglist.firstimage}}" class="img-fluid" alt="Responsive image">
+
+                      </div>
+
+                      <div class="col-lg-7 col-md-offset-2">
+                          <img src="/media/{{getbimglist.secondimage}}" class="img-fluid" alt="Responsive image">
+
+                        </div>
+
+                        <div class="col-lg-7 col-md-offset-2">
+                            <img src="/media/{{getbimglist.thirthimage}}" class="img-fluid" alt="Responsive image">
+
+                          </div>
+
+                          <div class="col-lg-7 col-md-offset-2">
+                            <img src="/media/{{getbimglist.fourthimage}}" class="img-fluid" alt="Responsive image">
+
+                            </div>
+
+                            <div class="col-lg-7 col-md-offset-2">
+                              <img src="/media/{{getbimglist.fiveimage}}" class="img-fluid" alt="Responsive image">
+
+                              </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+              </div>
+
+            </section>
+
+
+
+
+          </div>
+
+
+        </div>
+      </section>
+        </div>
+      </div>
+
+
+      </div>
+
+
+    </section>
+  </section>
+
+
+    <!-- footer -->
+    <footer id="footer">
+      <div class="text-center padder clearfix">
+        <p>
+          <small>&copy; Dr.fit 2017.</small><br><br>
+          <a href="#" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
+          <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="fa fa-google-plus"></i></a>
+        </p>
+      </div>
+    </footer>
+    <a href="#" class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
+    <!-- / footer -->
+  	<script src="/static/js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/static/js/bootstrap.js"></script>
+    <!-- app -->
+
+    <script src="/static/js/messenger/js/messenger.min.js"></script>
+    <script src="/static/js/addbresim.js"></script>
+      <script src="/static/js/slim/slim.kickstart.min.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/app.plugin.js"></script>
+    <script src="/static/js/app.data.js"></script>
+
+    <!-- Sparkline Chart -->
+    <script src="/static/js/charts/sparkline/jquery.sparkline.min.js"></script>
+    <!-- Easy Pie Chart -->
+    <script src="/static/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+  </body>
+  </html>

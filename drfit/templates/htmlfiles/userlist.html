@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dr. Fit</title>
+  <meta name="description" content="">
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ <link rel="stylesheet" href="http://falinlove.com/static/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="http://falinlove.com/static/css/font.css">
+ <link rel="stylesheet" href="http://falinlove.com/static/css/style.css">
+  <link rel="stylesheet" href="http://falinlove.com/static/css/plugin.css">
+  <!--[if lt IE 9]>
+    <script src="/static/js/ie/respond.min.js"></script>
+    <script src="/static/js/ie/html5.js"></script>
+    <script src="/static/js/ie/excanvas.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+  {% include "header.html" %}
+
+  {% include "navbar.html" %}
+
+
+
+
+  <section id="content">
+    <section class="main padder">
+      <div class="clearfix">
+        <h4><i class="fa fa-table"></i> Müşterileri Listele</h4>
+      </div>
+
+
+
+      <div class="container">
+
+        <div class="col-lg-12">
+          <section class="panel">
+            <div class="panel-body">
+              <div  class="form-horizontal">
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Müşteri ara :</label>
+                  <div class="col-lg-8">
+                    {% csrf_token %}
+                    <input type="text" data-type="text" data-required="true" class="bg-focus form-control parsley-validated" placeholder="Müşteri İsmini Girin" name="hotelname" id="hotelname">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-lg-9 col-lg-offset-3">
+                    <button class="btn btn-primary" id="otel-ara" type="submit">Müşteri ara.</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="table-responsive">
+              <table class="table table-striped datagrid m-b-small" id="otel-datalist">
+                <thead>
+                  <tr>
+                    <th class="sortable" data-property="otelid">Id </th>
+                    <th class="sortable" data-property="otelisim">İsim </th>
+                    <th class="sortable" data-property="otelbolge">Email  </th>
+                    <th class="sortable" data-property="mpassword">Premium </th>
+                    <th class="sortable" data-property="mpassword">Düzenle </th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <tr>
+                    <td>Müşterileri görmek için arama yapın.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><!--  <a href="#edit?geonameid=3530597"><i class="fa fa-pencil"></i></a>--></td>
+                 </tr>
+                </tbody>
+                </table>
+              </div>
+            </section>
+
+
+
+          </div>
+
+
+
+
+        </div>
+      </section>
+    </section>
+
+
+
+
+
+
+
+  <!-- footer -->
+  <footer id="footer">
+    <div class="text-center padder clearfix">
+      <p>
+        <small>&copy; Dr. Fit</small><br><br>
+        <a target="_blank" href="https://twitter.com/#" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
+        <a target="_blank" href="https://facebook.com/#" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
+        <a target="_blank" href="https://instagram.com/#" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-instagram"></i></a>
+      </p>
+    </div>
+  </footer>
+  <!-- / footer -->
+	<script src="/static/js/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="/static/js/bootstrap.js"></script>
+  <!-- Sparkline Chart -->
+  <script src="/static/js/charts/sparkline/jquery.sparkline.min.js"></script>
+  <!-- Easy Pie Chart -->
+  <script src="/static/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+
+  <!-- app -->
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/app.plugin.js"></script>
+  <script src="/static/js/app.data.js"></script>
+
+  <!-- fuelux -->
+  <script src="/static/js/fuelux/fuelux.js"></script>
+  <script src="/static/js/underscore-min.js"></script>
+  <!-- datatables -->
+  <script src="/static/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="/static/js/userlist.js"></script>
+</body>
+</html>

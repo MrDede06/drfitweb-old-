@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dr. Fit</title>
+  <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="http://falinlove.com/static/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="http://falinlove.com/static/css/font.css">
+	<link rel="stylesheet" href="http://falinlove.com/static/css/style.css">
+  <link rel="stylesheet" href="http://falinlove.com/static/css/plugin.css">
+  <link rel="stylesheet" href="http://falinlove.com/static/css/hungr.css">
+  <!--[if lt IE 9]>
+    <script src="/static/js/ie/respond.min.js"></script>
+    <script src="/static/js/ie/html5.js"></script>
+    <script src="/static/js/ie/excanvas.js"></script>
+  <![endif]-->
+
+
+
+
+
+
+
+
+</head>
+<body>
+  {% include "header.html" %}
+
+  {% include "navbar.html" %}
+
+  <section id="content">
+    <section class="main padder">
+      <div class="row">
+
+  <div class="col-sm-3">
+  </div>
+
+
+            <div class="col-sm-12">
+            <section class="panel">
+              <div class="panel-body">
+
+<center>
+                <div class="col-lg-12">
+
+
+
+                    <section class="media-body panel">
+                    <header class="panel-heading clearfix">
+                    <input id="msginput" type="text" class="form-control" placeholder="Typing here">
+                    </header>
+                    </section>
+
+                    <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs tabbars" role="tablist">
+                  <!--    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li> -->
+
+
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- <div role="tabpanel" class="tab-pane active" id="home">Deneme mesajı 1</div> -->
+
+
+                </div>
+
+              </div>
+
+
+
+
+
+
+
+
+                </div>
+</center>
+
+
+
+
+
+
+
+        </div>
+      </section>
+    </div>
+
+    <div class="col-sm-3">
+    </div>
+
+
+
+
+      </div>
+
+
+    </section>
+  </section>
+
+  <!-- footer -->
+  <footer id="footer">
+    <div class="text-center padder clearfix">
+      <p>
+        <small>&copy; Dr.fit 2017.</small><br><br>
+        <a href="#" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="fa fa-google-plus"></i></a>
+      </p>
+    </div>
+  </footer>
+  <a href="#" class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
+  <!-- / footer -->
+	<script src="http://falinlove.com/static/js/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="http://falinlove.com/static/js/bootstrap.js"></script>
+  <!-- app -->
+  <script src="http://falinlove.com/static/js/app.js"></script>
+  <script src="http://falinlove.com/static/js/app.plugin.js"></script>
+  <script src="http://falinlove.com/static/js/app.data.js"></script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+
+
+    var config = {
+      apiKey: "AIzaSyBr7xgXct4wV-Jrihy5P5A06bYd3JYbOAs",
+      authDomain: "drfit-77441.firebaseapp.com",
+      databaseURL: "https://drfit-77441.firebaseio.com",
+      storageBucket: "drfit-77441.appspot.com",
+    };
+    firebase.initializeApp(config);
+
+    function getlength(number) {
+        return number.toString().length;
+    }
+
+
+
+  $(document).ready(function() {
+  userlist = [];
+  receiver = "";
+  var input = document.getElementById('msginput');
+  $("#msginput").val('');
+  input.focus();
+  input.select();
+
+      var dbRef2 = firebase.database().ref().child('msgv2').orderByChild('status').equalTo("open");
+     dbRef2.on('value', orders => {
+
+       $(".tabbars").html('');
+       $(".tab-content").html('');
+       allmessages = orders.val();
+       console.log(allmessages);
+       $.each(allmessages, function(indexx, value){
+         var msgs = value["messages"];
+
+         $(".tabbars").append('<li role="presentation"  id="tab-'+indexx+'" aria-controls="'+indexx+'" class="mytab"><a href="#'+indexx+'"  role="tab" data-toggle="tab">'+indexx+'</a></li>');
+         $(".tab-content").append('<div class="tab-pane" role="tabpanel" id="'+indexx+'"></div>');
+
+
+
+          $.each(msgs, function(ixxxx, val){
+
+            console.log(ixxxx);
+            console.log(val["message"]);
+            console.log(val["userid"]);
+
+
+            $("#"+val["userid"]).prepend('<li class="list-group-item">'+
+            '<a href="#" class="thumb-small pull-left m-r-small"><img width="40" src="'+val["image"]+'" class="img-circle"></a>'+
+            '<div><small class="pull-right text-muted"><button class="btn btn-danger btn-xs closer" style="top:-10px;" id="cls-'+val["userid"]+'"> <i class="fa fa-times fa-1"></i></button></small>'+
+            '<h5 style="margin-top:15px">'+ val["message"] +'<h5>'+
+            '</div></li>');
+            userlist.push(val["userid"]);
+
+          });
+        });
+      });
+    });
+
+
+
+
+
+    $("#msginput").on("keypress", function(e) {
+        if(e.which == 13) {
+           var x = $("#msginput").val();
+           $("#msginput").val('');
+           console.log(x);
+           console.log(receiver);
+
+           if (x && receiver) {
+
+             var testsss = {"id": "","message": x, "type" : "x", "userid" : receiver, "image":"" };
+             var dbRef2 = firebase.database().ref().child('msgv2').child(receiver).child('messages').push().set(testsss);
+
+
+
+           }
+
+
+        }
+    });
+
+
+    $(".tabbars").on("click", "li", function(){
+  receiver = $(this).children("a").text();
+  //console.log(receiver);
+  $("#tab-"+receiver).children("a").css("color", "#3a5a7a");
+});
+  $(".tab-content").on("click","button", function(){
+    x = this.id.split("cls-");
+    console.log(x[1]);
+    $("#tab-"+x[1]).remove();
+    $("#"+x[1]).remove();
+    var idx = userlist.indexOf(x[1]);
+    userlist.splice(idx, 1);
+    console.log("splice başarılı " + userlist);
+  if (userlist[0]) {
+  $("#tab-"+userlist[0]).addClass("active");
+  $("#"+userlist[0]).addClass("active");
+  $("#tab-"+userlist[0]).click();
+  //$("#"+userlist[0]).show();
+  receiver = userlist[0];
+  console.log("wtf");
+  }else {
+  receiver = "";
+  }
+  });
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+  <!-- Sparkline Chart -->
+  <script src="http://falinlove.com/static/js/charts/sparkline/jquery.sparkline.min.js"></script>
+  <!-- Easy Pie Chart -->
+  <script src="http://falinlove.com/static/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+</body>
+</html>

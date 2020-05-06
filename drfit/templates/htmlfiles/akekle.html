@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dr. Fit</title>
+  <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="/static/css/font.css">
+	<link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/plugin.css">
+  <style>
+
+  .module {
+    margin: 10px;
+    width: 300px;
+    height: 100px;
+    float: left;
+
+    background-size: cover;
+    position: relative;
+  }
+
+  h2 {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 4px 8px;
+    color: white;
+    margin: 0;
+    font: 11px Sans-Serif;
+  }
+
+  h3 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 4px 8px;
+    color: white;
+    margin: 0;
+    font: 11px Sans-Serif;
+
+  }
+
+  .opp h2 {
+    background: rgba(255, 255, 255, 0.75);
+    color: black;
+  }
+
+  </style>
+
+  <link rel="stylesheet" href="/static/js/messenger/css/messenger.css">
+  <link rel="stylesheet" href="/static/js/messenger/css/messenger-theme-future.css">
+  <link rel="stylesheet" href="/static/js/slim/slim.min.css">
+
+
+  <!--[if lt IE 9]>
+    <script src="/static/js/ie/respond.min.js"></script>
+    <script src="/static/js/ie/html5.js"></script>
+    <script src="/static/js/ie/excanvas.js"></script>
+  <![endif]-->
+
+
+
+
+
+</head>
+
+<body>
+  {% include "header.html" %}
+
+  {% include "navbar.html" %}
+
+  <section id="content">
+    <section class="main padder">
+      <div class="clearfix">
+        <h4><i class="fa fa-edit"></i>Alt kategori ekle</h4>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-7 col-md-offset-2" >
+          <section class="panel">
+          <div class="panel-body">
+          <div class="form-horizontal">
+
+
+            <form action="/addaltcategoryfy" id="kateform" method="post" enctype="multipart/form-data" >
+
+
+              <div class="form-group">
+                <label class="col-lg-4 control-label">Kategori seçin</label>
+                <div class="col-lg-7">
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="myCombobox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        {% for i in getkategoris %}
+
+                        <li data-value="{{i.id}}"><a href="#">{{i.name_tr}}</a></li>
+                      {% endfor %}
+
+
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-lg-4 control-label">Bu alt kategori premium kullancılar için mi?:</label>
+                <div class="col-lg-7">
+
+                  <input type="checkbox" name="premium" value="true"><br>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-4 control-label">Programın Tahmini süresini belirleyin:</label>
+                <div class="col-lg-7">
+                  <input type="text" name="totaltime" id="totaltime" placeholder="Örn : 04:30" class="bg-focus form-control" data-required="true" data-type="text">
+
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <label class="col-lg-4 control-label">Çalışma alanı</label>
+                <div class="col-lg-7">
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="alanbox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        <li data-value="1"><a href="#">Vücut ağırlığı</a></li>
+                        <li data-value="2"><a href="#">Serbest Ağırlık</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+
+
+
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">Türkçe Kategori ismi belirleyin:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="traltkateisim" id="traltkateisim" placeholder="Kategori ismi" class="bg-focus form-control" data-required="true" data-type="text">
+                     <input type="hidden" name="cateforalt" id="cateforalt"  class="bg-focus form-control" data-required="true" data-type="text">
+                     <input type="hidden" name="calismaalanialt" id="calismaalanialt"  class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">Türkçe Kategori açıklamsı belirleyin:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="traltkateaciklama" id="traltkateaciklama" placeholder="Kategori Açıklaması" class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">İngilizce Kategori ismi belirleyin:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="enaltkateisim" id="enaltkateisim" placeholder="İngilizce Kategori ismi" class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">İngilizce Kategori açıklaması belirleyin:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="enaltkateaciklama" id="enaltkateaciklama" placeholder="İngilizce Kategori açıklaması" class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">Felemenkçe Kategori ismi belirleyin:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="flaltkateisim" id="flaltkateisim" placeholder="Felemenkçe Kategori ismi" class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">Felemenkçe Kategori açıklaması belirleyin:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="flaltkateaciklama" id="flaltkateaciklama" placeholder="Felemenkçe Kategori açıklaması" class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">Almanca Kategori ismi belirleyin:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="dealtkateisim" id="dealtkateisim" placeholder="Almanca Kategori ismi" class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">Almanca Kategori açıklaması belirleyin:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="dealtkateaciklama" id="dealtkateaciklama" placeholder="Almanca Kategori açıklaması" class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">İspanyolca Kategori ismi belirleyin:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="esaltkateisim" id="esaltkateisim" placeholder="İspanyolca Kategori ismi" class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="col-lg-4 control-label">İspanyolca Kategori açıklaması belirleyin:</label>
+                   <div class="col-lg-7">
+                     <input type="text" name="esaltkateaciklama" id="esaltkateaciklama" placeholder="İspanyolca Kategori açıklaması" class="bg-focus form-control" data-required="true" data-type="text">
+                   </div>
+                 </div>
+
+
+
+
+
+
+                 <div class="form-group">
+                   <label class="col-lg-3 control-label">Kategori Resmini belirleyin:</label>
+                   <div class="col-lg-8">
+                     <div class="slim" data-did-upload="imageUpload" style="width:350px;height:200px;"
+                          data-size="350,200"
+                          data-push="false"
+                          data-label="Resmi sürükleyin yada tıklayın"
+                          data-ratio="35:20">
+
+                         <input name="file" id="file"  type="file"  required />
+                 </div>
+                   </div>
+
+
+                   <div class="form-group">
+                     <label class="col-lg-3 control-label">Alt Kategori ismi belirleyin:</label>
+                     <div class="col-lg-8">
+                       <div id="altkategoriekle" class="btn btn-success" style="margin-top:10px;" >İşlemi tamamla</div>
+                     </div>
+                   </div>
+
+
+
+                 </div>
+
+          </form>
+
+          <div class="col-lg-7 col-md-offset-2">
+
+            <section class="panel">
+              <div class="panel-body">
+
+
+                  {% for x in getsubkategoris %}
+
+
+                    <div class="col-lg-7 col-md-offset-2">
+                      <div class="module" style="background: url(/media/{{x.image}});">
+                        <h3>{{x.name_en}}</h3>
+                        <h2>{{x.explain_en}}</h2>
+
+                      </div>
+
+
+                        </div>
+
+
+                  {% endfor%}
+
+
+
+
+              </div>
+
+            </section>
+
+
+
+
+          </div>
+
+
+        </div>
+      </section>
+        </div>
+      </div>
+
+
+      </div>
+
+
+    </section>
+  </section>
+
+
+    <!-- footer -->
+    <footer id="footer">
+      <div class="text-center padder clearfix">
+        <p>
+          <small>&copy; Dr.fit 2017.</small><br><br>
+          <a href="#" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
+          <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="fa fa-google-plus"></i></a>
+        </p>
+      </div>
+    </footer>
+    <a href="#" class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
+    <!-- / footer -->
+    <script src="/static/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="//www.fuelcdn.com/fuelux/3.13.0/js/fuelux.min.js"></script>
+    <!-- app -->
+
+    <script src="/static/js/messenger/js/messenger.min.js"></script>
+    <script src="/static/js/add.js"></script>
+      <script src="/static/js/slim/slim.kickstart.min.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/app.plugin.js"></script>
+    <script src="/static/js/app.data.js"></script>
+
+    <!-- Sparkline Chart -->
+    <script src="/static/js/charts/sparkline/jquery.sparkline.min.js"></script>
+    <!-- Easy Pie Chart -->
+    <script src="/static/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+  </body>
+  </html>

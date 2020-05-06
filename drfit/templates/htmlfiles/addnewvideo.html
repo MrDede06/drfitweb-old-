@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dr. Fit</title>
+  <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="/static/css/font.css">
+	<link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/plugin.css">
+
+
+  <link rel="stylesheet" href="/static/js/messenger/css/messenger.css">
+  <link rel="stylesheet" href="/static/js/messenger/css/messenger-theme-future.css">
+  <link rel="stylesheet" href="/static/js/slim/slim.min.css">
+
+
+  <!--[if lt IE 9]>
+    <script src="/static/js/ie/respond.min.js"></script>
+    <script src="/static/js/ie/html5.js"></script>
+    <script src="/static/js/ie/excanvas.js"></script>
+  <![endif]-->
+
+
+
+
+
+</head>
+<body>
+  {% include "header.html" %}
+
+  {% include "navbar.html" %}
+
+  <section id="content">
+    <section class="main padder">
+
+      <div class="clearfix">
+        <h4><i class="fa fa-edit"></i>&nbsp;Videolar</h4>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-7 col-md-offset-2">
+          <section class="panel">
+            <div class="panel-body">
+              <form class="form-horizontal" action="/newkategori" id="kateform" method="post" enctype="multipart/form-data" >
+
+                <div class="form-group">
+
+                  <label class="col-lg-3 control-label">Video ekleyin</label>
+                  <div class="col-lg-9 media">
+
+                    <div class="media-body">
+                      <input type="file" name="file" title="Change" class="btn btn-sm btn-info m-b-small"><br>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Türkçe Video ismi</label>
+                  <div class="col-lg-8">
+                    <input type="text" name="tname" id="tname" placeholder="Türkçe" class="bg-focus form-control" data-required="true" data-type="text">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Türkçe Alt yazılar</label>
+                  <input type="hidden" name="tlist" id="tlist"  class="bg-focus form-control" data-required="true" data-type="email">
+                  <div class="col-lg-8" id="subtitlelist">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Türkçe alt yazılar</label>
+                  <div class="col-lg-5">
+                    <input type="text" id="altyazi" placeholder="Alt yazı ekle" class="bg-focus form-control" data-required="false" data-type="text">
+                  </div>
+                  <div class="col-lg-3">
+                    <div  class="btn btn-primary" id="addnewstitle">Alt yazı ekle.</div>
+                  </div>
+                </div>
+
+
+                <div class="line line-dashed m-t-large"></div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">İngilizce Video ismi</label>
+                  <div class="col-lg-8">
+                    <input type="text" name="enname" id="enname" placeholder="İngilizce" class="bg-focus form-control" data-required="false" data-type="text">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">İngilizce alt yazılar</label>
+                  <input type="hidden" name="enlist" id="enlist" class="bg-focus form-control" data-required="true" data-type="email">
+                  <div class="col-lg-8" id="subtitlelisten">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">İngilizce Alt yazı</label>
+                  <div class="col-lg-5">
+                    <input type="text" id="altyazien" placeholder="Alt yazı ekle" class="bg-focus form-control" data-required="false" data-type="text">
+                  </div>
+                  <div class="col-lg-3">
+                    <div  class="btn btn-primary" id="addnewentitle">Alt yazı ekle.</div>
+                  </div>
+                </div>
+
+
+                <div class="line line-dashed m-t-large"></div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Felemenkçe Video ismi</label>
+                  <div class="col-lg-8">
+                    <input type="text" name="flname" id="flname" placeholder="Felemenkçe" class="bg-focus form-control" data-required="false" data-type="text">
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Felemenkçe alt yazılar</label>
+                  <input type="hidden" name="fllist" id="fllist" class="bg-focus form-control" data-required="true"  >
+                  <div class="col-lg-8" id="subtitlelistfl">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Felemenkçe Alt yazı</label>
+                  <div class="col-lg-5">
+                    <input type="text" id="altyazifl" placeholder="Alt yazı ekle" class="bg-focus form-control" data-required="false" data-type="text">
+                  </div>
+                  <div class="col-lg-3">
+                    <div  class="btn btn-primary" id="addnewfltitle">Alt yazı ekle.</div>
+                  </div>
+                </div>
+
+
+
+                <div class="line line-dashed m-t-large"></div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Almanca Video ismi</label>
+                  <div class="col-lg-8">
+                    <input type="text" name="dename" id="dename" placeholder="Almanca" class="bg-focus form-control" data-required="false" data-type="text">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Almanca alt yazılar</label>
+                  <input type="hidden" name="delist" id="delist" class="bg-focus form-control" data-required="true"  >
+                  <div class="col-lg-8" id="subtitlelistde">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Almanca Alt yazı</label>
+                  <div class="col-lg-5">
+                    <input type="text" id="altyazide" placeholder="Alt yazı ekle" class="bg-focus form-control" data-required="false" data-type="text">
+                  </div>
+                  <div class="col-lg-3">
+                    <div  class="btn btn-primary" id="addnewdetitle">Alt yazı ekle.</div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="line line-dashed m-t-large"></div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">İspanyolca Video ismi</label>
+                  <div class="col-lg-8">
+                    <input type="text" name="esname" id="esname" placeholder="Ispanyolca" class="bg-focus form-control" data-required="true" data-type="email">
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">İspanyolca alt yazılar</label>
+                  <input type="hidden" name="eslist" id="eslist" class="bg-focus form-control" data-required="true"  >
+                  <div class="col-lg-8" id="subtitlelistes">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">İspanyolca Alt yazı</label>
+                  <div class="col-lg-5">
+                    <input type="text" id="altyazies" placeholder="Alt yazı ekle" class="bg-focus form-control" data-required="false" data-type="text">
+                  </div>
+                  <div class="col-lg-3">
+                    <div  class="btn btn-primary" id="addnewestitle">Alt yazı ekle.</div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="line line-dashed m-t-large"></div>
+                <div class="line line-dashed m-t-large"></div>
+                <div class="line line-dashed m-t-large"></div>
+                <div class="form-group">
+                  <div class="col-lg-9 col-lg-offset-3">
+
+                    <div id="addnewvideo" class="btn btn-info">Kayıt et.</div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </section>
+
+        </div>
+
+
+
+
+      </div>
+
+
+    </section>
+  </section>
+
+
+  <!-- footer -->
+  <footer id="footer">
+    <div class="text-center padder clearfix">
+      <p>
+        <small>&copy; Dr.fit 2017.</small><br><br>
+        <a href="#" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="fa fa-google-plus"></i></a>
+      </p>
+    </div>
+  </footer>
+  <a href="#" class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
+  <!-- / footer -->
+	<script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/addvideo.js"></script>
+  <!-- Bootstrap -->
+  <script src="/static/js/bootstrap.js"></script>
+  <!-- app -->
+
+  <script src="/static/js/messenger/js/messenger.min.js"></script>
+
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/app.plugin.js"></script>
+  <script src="/static/js/app.data.js"></script>
+
+  <!-- Sparkline Chart -->
+  <script src="/static/js/charts/sparkline/jquery.sparkline.min.js"></script>
+  <!-- Easy Pie Chart -->
+  <script src="/static/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+</body>
+</html>

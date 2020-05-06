@@ -1,0 +1,501 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dr. Fit</title>
+  <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="//www.fuelcdn.com/fuelux/3.13.0/css/fuelux.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/font.css">
+	<link rel="stylesheet" href="/static/css/style.css">
+
+
+  <link rel="stylesheet" href="/static/js/messenger/css/messenger.css">
+  <link rel="stylesheet" href="/static/js/messenger/css/messenger-theme-future.css">
+  <link rel="stylesheet" href="/static/js/slim/slim.min.css">
+
+
+  <!--[if lt IE 9]>
+    <script src="/static/js/ie/respond.min.js"></script>
+    <script src="/static/js/ie/html5.js"></script>
+    <script src="/static/js/ie/excanvas.js"></script>
+  <![endif]-->
+
+
+
+
+
+</head>
+
+
+<body class="fuelux">
+  {% include "header.html" %}
+
+  {% include "navbar.html" %}
+
+  <section id="content">
+    <section class="main padder">
+      <div class="clearfix">
+        <h4><i class="fa fa-edit"></i>Bireysel program ekle</h4>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-7 col-md-offset-2">
+          <section class="panel">
+            <div class="panel-body">
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Hedefi seçin</label>
+                <div class="col-lg-8">
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="hedefbox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        <li data-value="1"><a href="#">Estetik</a></li>
+                        <li data-value="2"><a href="#">Performans</a></li>
+                        <li data-value="3"><a href="#">Hipertropi</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Çalışma alanı</label>
+                <div class="col-lg-8">
+
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="alanbox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right" id="alanboxsub">
+
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Kullanıcı cinsiyeti</label>
+                <div class="col-lg-8">
+
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="kilobox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right" id="calismaalanibox">
+                        <li data-value="0"><a href="#">Kadın</a></li>
+                        <li data-value="1"><a href="#">Erkek</a></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Tahmini süre:</label>
+                <div class="col-lg-8">
+                  <input type="text" name="totaltime" id="totaltime" placeholder="Örn : 04:30" class="bg-focus form-control" data-required="true" data-type="text">
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Güç Tipi</label>
+                <div class="col-lg-8">
+
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="powerbox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right" id="calismaalanibox">
+                        <li data-value="1"><a href="#">Güçsüz</a></li>
+                        <li data-value="2"><a href="#">Normal</a></li>
+                        <li data-value="3"><a href="#">Güçlü</a></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Gün Tipi</label>
+                <div class="col-lg-8">
+
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="daytypebox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right" id="calismaalanibox">
+                        <li data-value="3"><a href="#">Haftada 3 Gün.</a></li>
+                        <li data-value="4"><a href="#">Haftada 4 Gün.</a></li>
+                        <li data-value="5"><a href="#">Haftada 5 Gün.</a></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Hafta Belirleyin</label>
+                <div class="col-lg-8">
+
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="whichweekbox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right" id="calismaalanibox">
+                        <li data-value="1"><a href="#">1. Hafta</a></li>
+                        <li data-value="2"><a href="#">2. Hafta</a></li>
+                        <li data-value="3"><a href="#">3. Hafta</a></li>
+                        <li data-value="4"><a href="#">4. Hafta</a></li>
+                        <li data-value="5"><a href="#">5. Hafta</a></li>
+                        <li data-value="6"><a href="#">6. Hafta</a></li>
+                        <li data-value="7"><a href="#">7. Hafta</a></li>
+                        <li data-value="8"><a href="#">8. Hafta</a></li>
+                        <li data-value="9"><a href="#">9. Hafta</a></li>
+
+                        <li data-value="10"><a href="#">10. Hafta</a></li>
+                        <li data-value="11"><a href="#">11. Hafta</a></li>
+                        <li data-value="12"><a href="#">12. Hafta</a></li>
+                        <li data-value="13"><a href="#">13. Hafta</a></li>
+                        <li data-value="14"><a href="#">14. Hafta</a></li>
+                        <li data-value="15"><a href="#">15. Hafta</a></li>
+                        <li data-value="16"><a href="#">16. Hafta</a></li>
+                        <li data-value="17"><a href="#">17. Hafta</a></li>
+                        <li data-value="18"><a href="#">18. Hafta</a></li>
+                        <li data-value="19"><a href="#">19. Hafta</a></li>
+                        <li data-value="20"><a href="#">20. Hafta</a></li>
+
+                        <li data-value="21"><a href="#">21. Hafta</a></li>
+                        <li data-value="22"><a href="#">22. Hafta</a></li>
+                        <li data-value="23"><a href="#">23. Hafta</a></li>
+                        <li data-value="24"><a href="#">24. Hafta</a></li>
+                        <li data-value="25"><a href="#">25. Hafta</a></li>
+                        <li data-value="26"><a href="#">26. Hafta</a></li>
+                        <li data-value="27"><a href="#">27. Hafta</a></li>
+                        <li data-value="28"><a href="#">28. Hafta</a></li>
+                        <li data-value="29"><a href="#">29. Hafta</a></li>
+                        <li data-value="30"><a href="#">30. Hafta</a></li>
+
+                        <li data-value="31"><a href="#">31. Hafta</a></li>
+                        <li data-value="32"><a href="#">32. Hafta</a></li>
+                        <li data-value="33"><a href="#">33. Hafta</a></li>
+                        <li data-value="34"><a href="#">34. Hafta</a></li>
+                        <li data-value="35"><a href="#">35. Hafta</a></li>
+                        <li data-value="36"><a href="#">36. Hafta</a></li>
+                        <li data-value="37"><a href="#">37. Hafta</a></li>
+                        <li data-value="38"><a href="#">38. Hafta</a></li>
+                        <li data-value="39"><a href="#">39. Hafta</a></li>
+                        <li data-value="40"><a href="#">40. Hafta</a></li>
+
+                        <li data-value="41"><a href="#">41. Hafta</a></li>
+                        <li data-value="42"><a href="#">42. Hafta</a></li>
+                        <li data-value="43"><a href="#">43. Hafta</a></li>
+                        <li data-value="44"><a href="#">44. Hafta</a></li>
+                        <li data-value="45"><a href="#">45. Hafta</a></li>
+                        <li data-value="46"><a href="#">46. Hafta</a></li>
+                        <li data-value="47"><a href="#">47. Hafta</a></li>
+                        <li data-value="48"><a href="#">48. Hafta</a></li>
+                        <li data-value="49"><a href="#">49. Hafta</a></li>
+                        <li data-value="50"><a href="#">50. Hafta</a></li>
+
+                        <li data-value="51"><a href="#">51. Hafta</a></li>
+                        <li data-value="52"><a href="#">52. Hafta</a></li>
+
+
+
+
+
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Gün belirleyin</label>
+                <div class="col-lg-8">
+
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="selectdaybox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right" id="selectdaysub">
+
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Video belirleyin</label>
+                <div class="col-lg-8">
+
+                  <select name="videobox" id="videobox" style="width:300px;">
+                    {% for i in getvideos %}
+
+                    <option value="{{i.id}}">{{i.name_tr}}</option>
+                  {% endfor %}
+
+                  </select>
+
+
+
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Tekrar Sayısı</label>
+
+                <div class="col-lg-2">
+                  <input type="number" name="setsayisix" id="setsayisix" placeholder="Set sayısı" class="bg-focus form-control" data-required="true" >
+                 <div class="line line-dashed m-t-large"></div>
+                </div>
+
+                <div class="col-lg-2">
+                  <input type="number" name="tekrarsayisi" id="tekrarsayisix" placeholder="Tekrar/Saniye" class="bg-focus form-control" data-required="true" >
+                 <div class="line line-dashed m-t-large"></div>
+                </div>
+
+                <div class="col-lg-1">
+                  <p>Saniye</p>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+
+                <div class="col-lg-1">
+
+                  <input type="checkbox" name="isitduration" id="isitduration" value="true"><br>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+
+                <div class="col-lg-2">
+                  <div   id="createpro" class="btn btn-primary">Ekle</div>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+
+
+              </div>
+
+
+
+
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Dinlenme ekleyin</label>
+
+                <div class="col-lg-4">
+                <input type="number" name="resttime" id="resttime" placeholder="Dinlenme Süresi" class="bg-focus form-control" data-required="true" >
+                <div class="line line-dashed m-t-large"></div>
+                </div>
+
+                <div class="col-lg-4">
+                  <div   id="creterest" class="btn btn-primary">Ekle</div>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+
+          </section>
+        </div>
+      </div>
+
+
+<div class="row">
+<div class="col-lg-7 col-md-offset-2" >
+
+  <br>
+  <h4>1. Gün</h4>
+  <br>
+<div class="wizard" data-initialize="wizard" id="firstDay">
+<div class="steps-container">
+ <ul class="steps" id="firstDaySteps">
+ </ul>
+</div>
+<div class="actions">
+ <button type="button" class="btn btn-default btn-prev">
+   <span class="glyphicon glyphicon-arrow-left"></span>Prev</button>
+ <button type="button" class="btn btn-primary btn-next" data-last="Complete">Next
+   <span class="glyphicon glyphicon-arrow-right"></span>
+ </button>
+</div>
+<div class="step-content" id="firstDayStepsContent">
+</div>
+</div>
+
+
+<br>
+<h4>2. Gün</h4>
+<br>
+
+
+<div class="wizard" data-initialize="wizard" id="secondDay">
+<div class="steps-container">
+ <ul class="steps" id="secondDaySteps">
+ </ul>
+</div>
+<div class="actions">
+ <button type="button" class="btn btn-default btn-prev">
+   <span class="glyphicon glyphicon-arrow-left"></span>Prev</button>
+ <button type="button" class="btn btn-primary btn-next" data-last="Complete">Next
+   <span class="glyphicon glyphicon-arrow-right"></span>
+ </button>
+</div>
+<div class="step-content" id="secondDayStepsContent">
+</div>
+</div>
+
+<br>
+<h4>3. Gün</h4>
+<br>
+
+<div class="wizard" data-initialize="wizard" id="thirdDay">
+<div class="steps-container">
+ <ul class="steps" id="thirdDaySteps">
+ </ul>
+</div>
+<div class="actions">
+ <button type="button" class="btn btn-default btn-prev">
+   <span class="glyphicon glyphicon-arrow-left"></span>Prev</button>
+ <button type="button" class="btn btn-primary btn-next" data-last="Complete">Next
+   <span class="glyphicon glyphicon-arrow-right"></span>
+ </button>
+</div>
+<div class="step-content" id="thirdDayStepsContent">
+</div>
+</div>
+
+
+<br>
+<h4>4. Gün</h4>
+<br>
+<div class="wizard" data-initialize="wizard" id="fourthDay">
+<div class="steps-container">
+ <ul class="steps" id="fourthDayDaySteps">
+ </ul>
+</div>
+<div class="actions">
+ <button type="button" class="btn btn-default btn-prev">
+   <span class="glyphicon glyphicon-arrow-left"></span>Prev</button>
+ <button type="button" class="btn btn-primary btn-next" data-last="Complete">Next
+   <span class="glyphicon glyphicon-arrow-right"></span>
+ </button>
+</div>
+<div class="step-content" id="fourthDayStepsContent">
+</div>
+</div>
+
+
+<br>
+<h4>5. Gün</h4>
+<br>
+<div class="wizard" data-initialize="wizard" id="lastday">
+<div class="steps-container">
+ <ul class="steps" id="lastdaySteps">
+ </ul>
+</div>
+<div class="actions">
+ <button type="button" class="btn btn-default btn-prev">
+   <span class="glyphicon glyphicon-arrow-left"></span>Prev</button>
+ <button type="button" class="btn btn-primary btn-next" data-last="Complete">Next
+   <span class="glyphicon glyphicon-arrow-right"></span>
+ </button>
+</div>
+<div class="step-content" id="lastdayStepsContent">
+</div>
+</div>
+
+
+
+
+
+
+      </div>
+      </div>
+
+
+    </section>
+  </section>
+
+
+    <!-- footer -->
+    <footer id="footer">
+      <div class="text-center padder clearfix">
+        <p>
+          <small>&copy; Dr.fit 2017.</small><br><br>
+          <a href="#" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
+          <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="fa fa-google-plus"></i></a>
+        </p>
+      </div>
+    </footer>
+    <a href="#" class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
+    <!-- / footer -->
+
+    <!-- Bootstrap -->
+
+    <!-- app -->
+    <!-- jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//www.fuelcdn.com/fuelux/3.13.0/js/fuelux.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <script src="/static/js/messenger/js/messenger.min.js"></script>
+    <script src="/static/js/slim/slim.kickstart.min.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/app.plugin.js"></script>
+    <script src="/static/js/app.data.js"></script>
+    <script src="/static/js/addbpro.js"></script>
+
+
+    <!-- Sparkline Chart -->
+    <script src="/static/js/charts/sparkline/jquery.sparkline.min.js"></script>
+    <!-- Easy Pie Chart -->
+    <script src="/static/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+  </body>
+  </html>

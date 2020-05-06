@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dr. Fit</title>
+  <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="//www.fuelcdn.com/fuelux/3.13.0/css/fuelux.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/font.css">
+	<link rel="stylesheet" href="/static/css/style.css">
+
+
+  <link rel="stylesheet" href="/static/js/messenger/css/messenger.css">
+  <link rel="stylesheet" href="/static/js/messenger/css/messenger-theme-future.css">
+  <link rel="stylesheet" href="/static/js/slim/slim.min.css">
+
+
+  <!--[if lt IE 9]>
+    <script src="/static/js/ie/respond.min.js"></script>
+    <script src="/static/js/ie/html5.js"></script>
+    <script src="/static/js/ie/excanvas.js"></script>
+  <![endif]-->
+
+
+
+
+
+</head>
+
+
+<body class="fuelux">
+  {% include "header.html" %}
+
+  {% include "navbar.html" %}
+
+  <section id="content">
+    <section class="main padder">
+      <div class="clearfix">
+        <h4><i class="fa fa-edit"></i>Kategori programı ekle</h4>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-7 col-md-offset-2">
+          <section class="panel">
+            <div class="panel-body">
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Kategori seçin</label>
+                <div class="col-lg-8">
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="myCombobox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        {% for i in getkategoris %}
+
+                        <li data-value="{{i.id}}"><a href="#">{{i.name_tr}}</a></li>
+                      {% endfor %}
+
+
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Alt Kategori seçin</label>
+                <div class="col-lg-8">
+
+                  <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="mySubCombobox">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-right" id="subcts">
+
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Video belirleyin</label>
+                <div class="col-lg-8">
+
+                      <select name="videoBelirle" id="videoBelirle" style="width:300px;">
+                        {% for i in getvideos %}
+
+                        <option value="{{i.id}}">{{i.name_tr}}</option>
+                      {% endfor %}
+
+                      </select>
+
+
+
+
+
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Set ve Tekrar Sayısı</label>
+
+                <div class="col-lg-2">
+                  <input type="number" name="setsayisix" id="setsayisix" placeholder="Set sayısı" class="bg-focus form-control" data-required="true" >
+                 <div class="line line-dashed m-t-large"></div>
+                </div>
+
+                <div class="col-lg-2">
+                  <input type="number" name="tekrarsayisi" id="tekrarsayisix" placeholder="Tekrar/Saniye" class="bg-focus form-control" data-required="true" >
+                 <div class="line line-dashed m-t-large"></div>
+                </div>
+
+                <div class="col-lg-1">
+                  <p>Saniye</p>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+
+                <div class="col-lg-1">
+
+                  <input type="checkbox" name="isitduration" id="isitduration" value="true"><br>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+
+                <div class="col-lg-2">
+                  <div   id="createpro" class="btn btn-primary">Ekle</div>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+
+
+              </div>
+
+
+
+
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Dinlenme ekleyin</label>
+
+                <div class="col-lg-4">
+                <input type="number" name="resttime" id="resttime" placeholder="Dinlenme Süresi" class="bg-focus form-control" data-required="true" >
+                <div class="line line-dashed m-t-large"></div>
+                </div>
+
+                <div class="col-lg-4">
+                  <div   id="creterest" class="btn btn-primary">Ekle</div>
+                  <div class="line line-dashed m-t-large"></div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+
+          </section>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-7 col-md-offset-2" >
+
+
+
+
+              <div class="wizard" data-initialize="wizard" id="myWizard">
+<div class="steps-container">
+ <ul class="steps">
+
+
+ </ul>
+</div>
+<div class="actions">
+ <button type="button" class="btn btn-default btn-prev">
+   <span class="glyphicon glyphicon-arrow-left"></span>Prev</button>
+ <button type="button" class="btn btn-primary btn-next" data-last="Complete">Next
+   <span class="glyphicon glyphicon-arrow-right"></span>
+ </button>
+</div>
+<div class="step-content">
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+      </div>
+      </div>
+
+
+    </section>
+  </section>
+
+
+    <!-- footer -->
+    <footer id="footer">
+      <div class="text-center padder clearfix">
+        <p>
+          <small>&copy; Dr.fit 2017.</small><br><br>
+          <a href="#" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
+          <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="fa fa-google-plus"></i></a>
+        </p>
+      </div>
+    </footer>
+    <a href="#" class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
+    <!-- / footer -->
+
+    <!-- Bootstrap -->
+
+    <!-- app -->
+    <!-- jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//www.fuelcdn.com/fuelux/3.13.0/js/fuelux.min.js"></script>
+
+
+    <script src="/static/js/messenger/js/messenger.min.js"></script>
+
+      <script src="/static/js/slim/slim.kickstart.min.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/app.plugin.js"></script>
+    <script src="/static/js/app.data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <script src="/static/js/drfit.js"></script>
+
+    <!-- Sparkline Chart -->
+    <script src="/static/js/charts/sparkline/jquery.sparkline.min.js"></script>
+    <!-- Easy Pie Chart -->
+    <script src="/static/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+  </body>
+  </html>
