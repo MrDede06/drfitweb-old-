@@ -3,6 +3,7 @@ sudo apt-get install python-virtualenv -y
 sudo apt-get install python-dev -y
 sudo apt-get install libevent-dev -y
 sudo apt-get install nginx -y
+sudo apt-get install supervisor -y
 sudo apt-get install --reinstall language-pack-en -y
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
@@ -23,4 +24,8 @@ sudo ln -s /etc/nginx/sites-available/nginxconf /etc/nginx/sites-enabled/nginxco
 sudo mkdir  /opt/venv/logs
 sudo touch /opt/venv/logs/nginx-access.log  && sudo touch /opt/venv/logs/nginx-error.log
 sudo systemctl restart nginx
-sudo bash /opt/venv/bin/gunicorn_start
+#sudo bash /opt/venv/bin/gunicorn_start (supervisor will handle that)
+sudo cp /opt/venv/drfitweb/gunicorn.conf /etc/supervisor/conf.d/
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl status (optional to check supervisior status)
